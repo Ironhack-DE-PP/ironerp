@@ -15,6 +15,16 @@ if(process.env.NODE_ENV === 'development') {
 
 require('./config/db')
 
+const whiteList = ['http://localhost:/4200']
+
+const corsOptions = {
+  origin: (origin, callback) => {
+    const originIsWhitelisted = whiteList.indexOf(origin) !== -1
+    callback(null, originIsWhitelisted)
+  },
+  credentials: true
+}
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
