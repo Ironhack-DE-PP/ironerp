@@ -10,20 +10,20 @@ const index = require('./routes/index');
 const app = express();
 
 if(process.env.NODE_ENV === 'development') {
-  require('dotenv').config()
+    require('dotenv').config();
 }
 
-require('./config/db')
+require('./config/db');
 
-const whiteList = ['http://localhost:/4200']
+const whiteList = ['http://localhost:/4200'];
 
 const corsOptions = {
   origin: (origin, callback) => {
-    const originIsWhitelisted = whiteList.indexOf(origin) !== -1
-    callback(null, originIsWhitelisted)
+      const originIsWhitelisted = whiteList.indexOf(origin) !== -1;
+      callback(null, originIsWhitelisted);
   },
   credentials: true
-}
+};
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -39,6 +39,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 
-require('./config/errors')
+require('./config/errors');
 
 module.exports = app;
